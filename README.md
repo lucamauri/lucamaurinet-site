@@ -139,5 +139,5 @@ Add future secrets (API keys, tokens) to `.env` — never commit that file.
 
 ## License
 
-[MIT](https://opensource.org/licenses/MIT) — feel free to use this as a
-starting point for your own Flask project.
+[GPL v2](https://www.gnu.org/licenses/old-licenses/gpl-2.0.html) — feel free
+to use this as a starting point for your own Flask project.
