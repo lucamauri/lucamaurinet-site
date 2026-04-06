@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<!--
+    base.html — Master layout template
+    
+    All pages extend this template using Jinja2 template inheritance.
+    Child templates override the {% block %} sections defined here.
+    This means headers, footers, and navigation are written once only.
+-->
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--
+        {{ title }} is a Jinja2 variable — it gets replaced with whatever
+        value the Python route passed to render_template().
+        The "| default(...)" filter provides a fallback if no title is passed.
+    -->
+    <title>{{ title | default("Luca Mauri") }}</title>
+
+    <!-- Minimal inline styles — replace with a proper CSS file as you grow -->
+    <style>
+        body {
+            font-family: sans-serif;
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+            color: #333;
+        }
+
+        nav a {
+            margin-right: 1rem;
+            text-decoration: none;
+            color: #555;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: #999;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <a href="/">Home</a>
+            <a href="/about">About</a>
+        </nav>
+        <hr>
+    </header>
+
+    <main>
+        <!--
+            {% block content %}{% endblock %} is a placeholder.
+            Child templates fill this in with their own content.
+            Anything outside this block (header, footer) is shared.
+        -->
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <hr>
+        <p>&copy; {{ 2026 }} Luca Mauri</p>
+    </footer>
+
+</body>
+
+</html>

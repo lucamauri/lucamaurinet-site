@@ -1,0 +1,53 @@
+# =============================================================================
+# lucamaurinet-site — Docker Compose configuration
+#
+# This file defines how the Flask container runs on the server:
+# its name, how it's built, which port it listens on, and how it
+# behaves when the server restarts.
+#
+# Architecture:
+#   Internet → Apache:443 (SSL) → proxy_pass → flask-app:5000
+# =============================================================================
+
+services:
+
+  flask-app:
+    # -------------------------------------------------------------------------
+    # Build the image from the Dockerfile in the ./app directory.
+    # Run "docker compose build" to rebuild after code or dependency changes.
+    # -------------------------------------------------------------------------
+    build:
+      context: ./app
+
+    # -------------------------------------------------------------------------
+    # Container name — makes it easy to identify in "docker ps" output
+    # and in server logs.
+    # -------------------------------------------------------------------------
+    container_name: lucamaurinet-flask
+
+    # -------------------------------------------------------------------------
+    # Restart policy: restart the container automatically unless you
+    # explicitly stop it yourself (e.g. "docker compose down").
+    # This means the site survives VPS reboots without manual intervention.
+    # -------------------------------------------------------------------------
+    restart: unless-stopped
+
+    # -------------------------------------------------------------------------
+    # Port mapping: host:container
+    # We bind to 127.0.0.1 (loopback only) on the host side — this means
+    # port 5000 is NOT reachable from the internet directly.
+    # Only Apache, running on the same server, can reach it.
+    # This is the same security pattern you already use with Traefik
+    # in DataTrekServices.
+    # -------------------------------------------------------------------------
+    ports:
+      - "127.0.0.1:5000:5000"
+
+    # -------------------------------------------------------------------------
+    # Environment variables passed into the container at runtime.
+    # FLASK_ENV tells Flask it is running in production mode —
+    # this disables the interactive debugger and enables optimisations.
+    # Additional secrets (if needed later) should go in .env, not here.
+    # -------------------------------------------------------------------------
+    environment:
+      - FLASK_ENV=production

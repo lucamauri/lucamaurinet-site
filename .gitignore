@@ -1,0 +1,72 @@
+# =============================================================================
+# lucamaurinet-site — .gitignore
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Local environment file — contains secrets, NEVER commit this
+# -----------------------------------------------------------------------------
+.env
+
+# -----------------------------------------------------------------------------
+# Python runtime artifacts
+# These are generated automatically and must never be committed —
+# they are platform-specific and would break on other machines.
+# -----------------------------------------------------------------------------
+__pycache__/          # compiled bytecode cache directories
+*.py[cod]             # .pyc, .pyo, .pyd compiled Python files
+*.pyd                 # Python extension modules (Windows)
+
+# -----------------------------------------------------------------------------
+# Python virtual environments
+# If you ever test the app locally outside Docker, pip creates these.
+# They are large, machine-specific, and fully reproducible from requirements.txt
+# -----------------------------------------------------------------------------
+.venv/
+venv/
+env/
+
+# -----------------------------------------------------------------------------
+# Docker artifacts
+# Override files are machine-specific (e.g. local port remapping for testing)
+# -----------------------------------------------------------------------------
+docker-compose.override.yml
+
+# -----------------------------------------------------------------------------
+# VS Code workspace files
+# .vscode/ contains editor settings, launch configs, and extension state.
+# Some of these are personal preferences that shouldn't be imposed on
+# other contributors (or future you on a different machine).
+# Exception: if you deliberately want to share launch/settings configs,
+# you can whitelist specific files with a leading ! (shown below, commented out)
+# -----------------------------------------------------------------------------
+.vscode/
+# !.vscode/settings.json     # uncomment to share editor settings
+# !.vscode/launch.json       # uncomment to share debug launch config
+# !.vscode/extensions.json   # uncomment to share recommended extensions
+
+# -----------------------------------------------------------------------------
+# macOS filesystem artifacts (in case you ever work from a Mac)
+# -----------------------------------------------------------------------------
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# -----------------------------------------------------------------------------
+# Linux filesystem artifacts
+# -----------------------------------------------------------------------------
+*~              # backup files created by some editors
+.nfs*           # temporary NFS files
+
+# -----------------------------------------------------------------------------
+# Logs — generated at runtime, not part of source code
+# -----------------------------------------------------------------------------
+*.log
+logs/
+
+# -----------------------------------------------------------------------------
+# Editor swap and backup files (vim, emacs, etc.)
+# -----------------------------------------------------------------------------
+*.swp
+*.swo
+*~
+\#*\#

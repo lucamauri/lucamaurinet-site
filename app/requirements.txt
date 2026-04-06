@@ -1,0 +1,11 @@
+# Production dependencies for lucamaurinet-site
+#
+# Version pinning strategy: compatible release (~=)
+# This means "this minor version or any later patch, but not the next minor".
+# Example: ~=3.1.0 accepts 3.1.1, 3.1.2, but never 3.2.0
+# This is equivalent to Composer's ~3.1.0 notation.
+#
+# To upgrade deliberately: change the version here and rebuild the container.
+
+flask~=3.1.0       # The web framework
+gunicorn~=23.0.0   # Production WSGI server
